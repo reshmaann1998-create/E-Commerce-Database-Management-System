@@ -294,4 +294,21 @@ INNER JOIN order_items ON orders.order_id = order_items.order_id
 SELECT customers.customer_name, SUM(orders.total_amount) AS total_spent
 FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id
 GROUP BY customers.customer_name                                                   
-                     
+SELECT product_name, price FROM products WHERE price > (SELECT AVG(price) FROM products)
+
+SELECT product_name, price, RANK() OVER (ORDER BY price DESC) AS price_rank FROM products
+
+SELECT product_name, price, ROW_NUMBER() OVER (ORDER BY price DESC) AS row_num FROM products
+
+SELECT order_id, total_amount, LAG(total_amount) OVER (ORDER BY order_id) AS previous_amount, LEAD(total_amount) OVER (ORDER BY order_id) AS next_amount FROM orders
+
+DELIMITER //
+
+CREATE PROCEDURE show_products()
+BEGIN
+SELECT * FROM products;
+END //
+
+DELIMITER ;
+
+CALL show_products()                     
