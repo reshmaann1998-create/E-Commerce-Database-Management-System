@@ -53,3 +53,6 @@ These queries are used to analyze products, customers, orders, payments and sale
 
 ## Conclusion
 This project demonstrates the practical use of SQL for managing and analyzing an e-commerce database.
+## ER Diagram
+
+![ShopEasy ER Diagram](ShopEasy%20_%20ER%20Diagram.png)
